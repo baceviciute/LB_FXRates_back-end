@@ -4,12 +4,12 @@ public class CurrencyInfo {
 
     private String date;
     private String currency;
-    private Double rate;
+    private double rate;
 
     public CurrencyInfo() {
     }
 
-    public CurrencyInfo(String date, String currency, Double rate) {
+    public CurrencyInfo(String date, String currency, double rate) {
         this.date = date;
         this.currency = currency;
         this.rate = rate;
@@ -35,7 +35,7 @@ public class CurrencyInfo {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

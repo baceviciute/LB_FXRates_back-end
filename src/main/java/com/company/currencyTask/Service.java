@@ -97,11 +97,22 @@ class Service {
 
 
     private String exchangeRateDifference(List<CurrencyInfo> currencyInfoList) {
-        Double firstRate = currencyInfoList.get(0).getRate();
-        Double currentRate = currencyInfoList.get(currencyInfoList.size() - 1).getRate();
-        NumberFormat formatter = new DecimalFormat("#0.00");
 
-        return (formatter.format((firstRate - currentRate) / currentRate * 100)) + "%";
+        String exchangeRateDifference;
+
+        if(currencyInfoList != null) {
+            double currentExRate = currencyInfoList.get(0).getRate();
+            double lastExRate = currencyInfoList.get(currencyInfoList.size() - 1).getRate();
+            NumberFormat formatter = new DecimalFormat("#0.00");
+
+            exchangeRateDifference = (formatter.format((lastExRate - currentExRate) / currentExRate * 100)) + "%";
+
+        }else {
+            exchangeRateDifference = "0";
+        }
+
+        return exchangeRateDifference;
+
     }
 
 
