@@ -31,4 +31,12 @@ public class Result {
     public void setExchangeRateDifference(String exchangeRateDiffefence) {
         this.exchangeRateDifference = exchangeRateDiffefence;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "currencyInfoList=" + currencyInfoList +
+                ", exchangeRateDifference='" + exchangeRateDifference + '\'' +
+                '}';
+    }
 }

@@ -23,7 +23,7 @@ import java.util.List;
 @org.springframework.stereotype.Service
 class Service {
 
-    private static final String link = "https://www.lb.lt/webservices/FxRates/FxRates.asmx/getFxRatesForCurrency?tp=EU&ccy=%s&dtFrom=%s&dtTo=%s";
+    private static final String LINK = "https://www.lb.lt/webservices/FxRates/FxRates.asmx/getFxRatesForCurrency?tp=EU&ccy=%s&dtFrom=%s&dtTo=%s";
 
     Result getFinalResult(String currency, String dateFrom, String dateTo) {
 
@@ -41,7 +41,7 @@ class Service {
 
         List<CurrencyInfo> currencyInfoList = null;
 
-        String url = String.format(link, currency, dateFrom, dateTo);
+        String url = String.format(LINK, currency, dateFrom, dateTo);
 
         try {
             URLConnection openConnection = new URL(url).openConnection();
@@ -49,14 +49,12 @@ class Service {
             openConnection.connect();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(openConnection.getInputStream(), Charset.forName("UTF-8")));
-
             StringBuilder stringBuilder = new StringBuilder();
             String line;
 
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
                 stringBuilder.append(System.lineSeparator());
-
             }
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -97,22 +95,10 @@ class Service {
 
 
     private String exchangeRateDifference(List<CurrencyInfo> currencyInfoList) {
-
-        String exchangeRateDifference;
-
-        if(currencyInfoList != null) {
-            double currentExRate = currencyInfoList.get(0).getRate();
-            double lastExRate = currencyInfoList.get(currencyInfoList.size() - 1).getRate();
-            NumberFormat formatter = new DecimalFormat("#0.00");
-
-            exchangeRateDifference = (formatter.format((lastExRate - currentExRate) / currentExRate * 100)) + "%";
-
-        }else {
-            exchangeRateDifference = "0";
-        }
-
-        return exchangeRateDifference;
-
+        double currentExRate = currencyInfoList.get(0).getRate();
+        double lastExRate = currencyInfoList.get(currencyInfoList.size() - 1).getRate();
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        return (formatter.format((lastExRate - currentExRate) / currentExRate * 100)) + "%";
     }
 
 

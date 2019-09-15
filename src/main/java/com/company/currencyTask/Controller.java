@@ -15,7 +15,7 @@ public class Controller {
     }
 
     @GetMapping
-    @RequestMapping("/fx_rates")
+    @RequestMapping("/fxrates")
     public Result getCurrencyInfo(@RequestParam String currency,
                                   @RequestParam String dateFrom,
                                   @RequestParam String dateTo) {

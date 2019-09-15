@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CurrencyTaskApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(CurrencyTaskApplication.class, args);
     }
 
